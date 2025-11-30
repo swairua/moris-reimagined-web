@@ -16,20 +16,6 @@ interface PageMetaProps {
   author?: string;
   publishedDate?: string;
   modifiedDate?: string;
-  organizationSchema?: {
-    name: string;
-    logo?: string;
-    url?: string;
-    telephone?: string;
-    email?: string;
-    address?: {
-      streetAddress: string;
-      addressLocality: string;
-      addressCountry: string;
-      postalCode?: string;
-    };
-    sameAs?: string[];
-  };
 }
 
 export const usePageMeta = ({
