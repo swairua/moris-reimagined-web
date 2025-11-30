@@ -1,5 +1,7 @@
 import { ProductPageLayout } from "@/components/ProductPageLayout";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { MessageCircle } from "lucide-react";
 
 const products = [
   {
@@ -163,6 +165,14 @@ const products = [
     image: "https://cdn.builder.io/api/v1/image/assets%2F8a4218e21c624724bb59cc87fa693142%2F7caedf144cdb44aa8dde1444b0c64e04?format=webp&width=800",
   },
 ];
+
+const openWhatsApp = (productName: string) => {
+  const phoneNumber = "254733137332";
+  const message = encodeURIComponent(
+    `Hello! I'm interested in getting a quotation for: ${productName}. Please provide details and pricing.`
+  );
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+};
 
 const MedicalEquipment = () => {
   return (
