@@ -1,5 +1,7 @@
 import { ProductPageLayout } from "@/components/ProductPageLayout";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { MessageCircle } from "lucide-react";
 
 const products = [
   {
@@ -33,6 +35,14 @@ const products = [
   },
 ];
 
+const openWhatsApp = (productName: string) => {
+  const phoneNumber = "254733137332";
+  const message = encodeURIComponent(
+    `Hello! I'm interested in getting a quotation for: ${productName}. Please provide details and pricing.`
+  );
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+};
+
 const MicrobiologyBiotechnology = () => {
   return (
     <ProductPageLayout
@@ -43,8 +53,8 @@ const MicrobiologyBiotechnology = () => {
         {products.map((product, index) => (
           <Card
             key={index}
-            className={`hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${
-              product.image ? "overflow-hidden" : "p-6"
+            className={`hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full ${
+              product.image ? "overflow-hidden" : ""
             }`}
           >
             {product.image && (
@@ -56,13 +66,20 @@ const MicrobiologyBiotechnology = () => {
                 />
               </div>
             )}
-            <div className={product.image ? "p-6" : ""}>
+            <div className="p-6 flex flex-col h-full flex-1">
               <h3 className="text-xl font-display font-semibold text-foreground mb-2">
                 {product.name}
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground flex-1">
                 High-quality products for microbiological research and biotechnology applications.
               </p>
+              <Button
+                onClick={() => openWhatsApp(product.name)}
+                className="w-full mt-4 bg-green-500 hover:bg-green-600 text-white font-medium"
+              >
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Request Quotation via WhatsApp
+              </Button>
             </div>
           </Card>
         ))}
