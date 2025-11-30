@@ -104,7 +104,7 @@ export const Services = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
-            Our Services
+            Our Premium Products &amp; Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             We help you with all the solutions you may require for the industry with prompt service at any point in time. Customer centricity is our motto.
