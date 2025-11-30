@@ -51,7 +51,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-secondary/30">
+    <section id="contact" className="py-24 bg-secondary/30" aria-label="Contact Us">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
