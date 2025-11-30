@@ -16,20 +16,6 @@ const Index = () => {
     breadcrumbs: [
       { name: "Home", url: "https://morisenterprises.com/" },
     ],
-    organizationSchema: {
-      name: "Moris Enterprises",
-      url: "https://morisenterprises.com",
-      telephone: "+254733137332",
-      email: "info@morisentreprise.com",
-      address: {
-        streetAddress: "Juja road",
-        addressLocality: "Nairobi",
-        addressCountry: "Kenya",
-      },
-      sameAs: [
-        "https://wa.me/254733137332",
-      ],
-    },
   });
 
   return (
