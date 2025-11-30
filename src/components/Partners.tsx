@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import { useEffect } from "react";
 
 interface Partner {
   name: string;
@@ -20,6 +21,51 @@ const partners: Partner[] = [
 ];
 
 export const Partners = () => {
+  useEffect(() => {
+    const partnersSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Moris Enterprises",
+          item: "https://morisenterprises.com",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Partners",
+          item: "https://morisenterprises.com/#partners",
+        },
+      ],
+    };
+
+    const partnersOrgSchema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Moris Enterprises",
+      url: "https://morisenterprises.com",
+      description: "Premier supplier of laboratory chemicals, equipment, and diagnostic instruments in Kenya. Official Palintest distributor.",
+      partners: partners.map((partner) => ({
+        "@type": "Organization",
+        name: partner.name,
+        url: partner.url,
+        description: partner.description,
+      })),
+    };
+
+    let partnersScript = document.querySelector("script[data-partners-schema]");
+    if (partnersScript) {
+      partnersScript.textContent = JSON.stringify(partnersOrgSchema);
+    } else {
+      partnersScript = document.createElement("script");
+      partnersScript.type = "application/ld+json";
+      partnersScript.setAttribute("data-partners-schema", "true");
+      partnersScript.textContent = JSON.stringify(partnersOrgSchema);
+      document.head.appendChild(partnersScript);
+    }
+  }, []);
   const featuredPartner = partners.find(p => p.featured);
   const otherPartners = partners.filter(p => !p.featured);
 
