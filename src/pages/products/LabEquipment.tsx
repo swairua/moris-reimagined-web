@@ -110,7 +110,7 @@ const LabEquipment = () => {
                 />
               </div>
             )}
-            <div className="p-6 flex-1 flex flex-col">
+            <div className="p-6 flex flex-col flex-1">
               <h3 className="text-xl font-display font-semibold text-foreground mb-2">
                 {product.name}
               </h3>
