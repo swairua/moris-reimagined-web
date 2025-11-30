@@ -205,7 +205,7 @@ const WaterAnalysis = () => {
           <li>Food and beverage industry QC</li>
           <li>Pharmaceutical manufacturing</li>
           <li>Laboratory research and analysis</li>
-        </li>
+        </ul>
 
         <h3 className="text-2xl font-display font-bold text-foreground mt-6 mb-3">
           Test Parameters Include:
