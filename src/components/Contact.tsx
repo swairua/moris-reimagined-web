@@ -2,9 +2,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { MapPin, Mail, Phone, Clock, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { createWhatsAppMessage, openWhatsApp, getWhatsAppNumber } from "@/lib/whatsapp";
 
 export const Contact = () => {
   const { toast } = useToast();
@@ -18,7 +19,8 @@ export const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+    // Validation
+    if (!formData.name?.trim() || !formData.email?.trim() || !formData.phone?.trim() || !formData.message?.trim()) {
       toast({
         title: "Please fill all fields",
         description: "All fields are required to send your inquiry.",
@@ -27,19 +29,45 @@ export const Contact = () => {
       return;
     }
 
-    const whatsappMessage = encodeURIComponent(
-      `Hello! I have a new inquiry:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nRequirements:\n${formData.message}`
-    );
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
 
-    const whatsappUrl = `https://wa.me/254733137332?text=${whatsappMessage}`;
+    // Phone validation (at least 9 characters)
+    if (formData.phone.replace(/\D/g, "").length < 9) {
+      toast({
+        title: "Invalid phone number",
+        description: "Please enter a valid phone number.",
+        variant: "destructive",
+      });
+      return;
+    }
 
-    window.open(whatsappUrl, "_blank");
+    // Create WhatsApp message with structured format
+    const message = createWhatsAppMessage({
+      subject: "New Inquiry from Website",
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+    });
+
+    // Send to WhatsApp
+    openWhatsApp(message);
 
     toast({
       title: "Message Sent!",
       description: "You'll be redirected to WhatsApp. We'll get back to you within 24 hours.",
     });
 
+    // Reset form
     setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
@@ -177,7 +205,7 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-display font-semibold text-foreground mb-2">Call Us</h3>
-                  <a href="tel:+254733137332" className="text-muted-foreground hover:text-primary transition-colors">+254 733 137 332</a>
+                  <a href={`tel:${getWhatsAppNumber()}`} className="text-muted-foreground hover:text-primary transition-colors">{getWhatsAppNumber()}</a>
                   <p className="text-muted-foreground"><a href="tel:+254741404094" className="hover:text-primary transition-colors">+254 741 404 094</a></p>
                 </div>
               </div>
