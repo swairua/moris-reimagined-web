@@ -7,52 +7,52 @@ import { openProductQuotation } from "@/lib/whatsapp";
 
 const productCategories = {
   "Filter Papers & Materials": [
-    "Chemical Analysis Filter Paper",
-    "Glass Microfiber Filters",
-    "Filter papers - all grades and brands",
-    "pH Indicator Paper",
-    "Test Strips kits",
-    "Washable Artificial Leather Paper",
-    "Thimble Filters",
-    "Cellulose Extraction Thimbles",
+    { name: "Chemical Analysis Filter Paper", description: "General-purpose filter paper for chemical analysis and laboratory filtration applications." },
+    { name: "Glass Microfiber Filters", description: "High-performance glass microfiber filters with fine capillary structure for superior absorption." },
+    { name: "Filter papers - all grades and brands", description: "Comprehensive selection of filter papers in various grades for different analytical needs." },
+    { name: "pH Indicator Paper", description: "Calibrated pH indicator paper strips for quick pH determination across various ranges." },
+    { name: "Test Strips kits", description: "Complete test strip kits for rapid chemical and water quality analysis." },
+    { name: "Washable Artificial Leather Paper", description: "Durable washable filter material for reusable laboratory applications." },
+    { name: "Thimble Filters", description: "Extraction thimbles for use in Soxhlet and other extraction apparatus." },
+    { name: "Cellulose Extraction Thimbles", description: "High-purity cellulose thimbles designed for solvent extraction processes." },
   ],
   "Syringe Filtration": [
-    "Syringe Filters (multiple sizes)",
-    "PTFE Hydrophilic Filters",
-    "PTFE Hydrophobic Filters",
-    "Nylon Syringe Filters",
-    "MCE Syringe Filters",
-    "PES (Polyethersulfone) Syringe Filters",
-    "PVDF Hydrophilic Filters",
+    { name: "Syringe Filters (multiple sizes)", description: "Versatile syringe filters available in standard and custom sizes for sample preparation." },
+    { name: "PTFE Hydrophilic Filters", description: "PTFE filters optimized for aqueous solutions and hydrophilic applications." },
+    { name: "PTFE Hydrophobic Filters", description: "PTFE filters designed for organic solvents and hydrophobic sample filtration." },
+    { name: "Nylon Syringe Filters", description: "Nylon filters with excellent chemical compatibility for diverse sample types." },
+    { name: "MCE Syringe Filters", description: "Mixed cellulose ester filters ideal for microbiological and general laboratory use." },
+    { name: "PES (Polyethersulfone) Syringe Filters", description: "PES filters with low protein binding for pharmaceutical and biotech applications." },
+    { name: "PVDF Hydrophilic Filters", description: "PVDF filters for aggressive chemical environments with superior durability." },
   ],
   "Membrane Filters": [
-    "Membrane filters (multiple types)",
-    "Filter membranes",
-    "Nucleopore membranes",
-    "Nylon membranes",
-    "Cellulose acetate membranes",
+    { name: "Membrane filters (multiple types)", description: "Diverse membrane filter types for various separation and filtration applications." },
+    { name: "Filter membranes", description: "Replacement filter membranes compatible with standard filtration systems." },
+    { name: "Nucleopore membranes", description: "Polycarbonate track-etched membranes with uniform pore sizes for precision filtering." },
+    { name: "Nylon membranes", description: "Nylon membrane filters for general filtration and sample preparation." },
+    { name: "Cellulose acetate membranes", description: "Cellulose acetate filters for use in various laboratory and analytical applications." },
   ],
   "Filtration Systems": [
-    "Vacuum pump (oil-free)",
-    "Stainless steel Manifold set (3 branch)",
-    "Stainless steel Manifold set (6 branch)",
-    "Vacuum filtration apparatus",
-    "SPE Cartridge systems",
-    "Bottle-Top-Dispensers",
-    "QuEChERS filtration kits",
+    { name: "Vacuum pump (oil-free)", description: "Energy-efficient oil-free vacuum pump for clean filtration systems." },
+    { name: "Stainless steel Manifold set (3 branch)", description: "3-position stainless steel manifold for simultaneous multiple sample filtration." },
+    { name: "Stainless steel Manifold set (6 branch)", description: "6-position stainless steel manifold enabling high-throughput sample processing." },
+    { name: "Vacuum filtration apparatus", description: "Complete vacuum filtration system setup for laboratory sample preparation." },
+    { name: "SPE Cartridge systems", description: "Solid phase extraction cartridge systems for targeted sample preparation." },
+    { name: "Bottle-Top-Dispensers", description: "Convenient bottle-top dispensers for media and reagent distribution." },
+    { name: "QuEChERS filtration kits", description: "Complete QuEChERS kits for pesticide residue analysis in food matrices." },
   ],
   "Sample Preparation": [
-    "Cuvettes",
-    "SPE Cartridge",
-    "Filter Bags",
-    "Filter Capsules",
-    "Glass Distiller Reactor",
-    "Handheld Crimper & Decappers",
+    { name: "Cuvettes", description: "Standard and specialized cuvettes for spectrophotometric analysis." },
+    { name: "SPE Cartridge", description: "Disposable solid phase extraction cartridges for sample cleanup and enrichment." },
+    { name: "Filter Bags", description: "Mesh filter bags for sample extraction and particle size separation." },
+    { name: "Filter Capsules", description: "Sealed filter capsules for pressurized filtration applications." },
+    { name: "Glass Distiller Reactor", description: "Laboratory-grade glass reactor for distillation and solvent purification." },
+    { name: "Handheld Crimper & Decappers", description: "Manual tools for vial capping and uncapping in sample preparation." },
   ],
   "Specialized Filtration": [
-    "Respirators",
-    "Vial & caps & septa",
-    "ELISA Plate",
+    { name: "Respirators", description: "Protective respirators with filtration media for safe laboratory operation." },
+    { name: "Vial & caps & septa", description: "Complete vial closure system including caps and septa for secure sample storage." },
+    { name: "ELISA Plate", description: "96-well plates designed for ELISA immunoassay applications." },
   ],
 };
 
@@ -90,13 +90,13 @@ const Filtration = () => {
                   className="p-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col"
                 >
                   <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {product}
+                    {product.name}
                   </h3>
                   <p className="text-sm text-muted-foreground flex-1">
-                    High-quality filtration products for accurate sample preparation and analysis.
+                    {product.description}
                   </p>
                   <Button
-                    onClick={() => openProductQuotation(product)}
+                    onClick={() => openProductQuotation(product.name)}
                     className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white font-medium text-sm"
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />

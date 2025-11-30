@@ -7,101 +7,101 @@ import { openProductQuotation } from "@/lib/whatsapp";
 
 const productCategories = {
   "Sterilization & Safety": [
-    "Table Top Portable Type Lab Steam Autoclave Sterilizer",
-    "18L or 24L Medical Lab Autoclave Type Sterilization Machine",
-    "Laminar Flow Cabinet",
-    "Fume Hood",
-    "Ultrasonic Cleaner",
+    { name: "Table Top Portable Type Lab Steam Autoclave Sterilizer", description: "Compact portable autoclave sterilizer ideal for laboratory and small clinical applications." },
+    { name: "18L or 24L Medical Lab Autoclave Type Sterilization Machine", description: "Medium-capacity sterilization autoclave for medical and laboratory equipment." },
+    { name: "Laminar Flow Cabinet", description: "Cleanroom-grade laminar flow cabinet for sterile sample preparation and handling." },
+    { name: "Fume Hood", description: "Chemical fume hood for safe handling of volatile and hazardous substances." },
+    { name: "Ultrasonic Cleaner", description: "Ultrasonic cleaning device for removing contamination from laboratory equipment." },
   ],
   "Diagnostic Instruments": [
-    "Binocular LCD Display Digital Video Microscope",
-    "Blood Analyzer Auto Hematology Analyzer",
-    "Chemistry Analyzer Chemistry Machine",
+    { name: "Binocular LCD Display Digital Video Microscope", description: "Advanced digital microscope with binocular eyepieces and LCD display capability." },
+    { name: "Blood Analyzer Auto Hematology Analyzer", description: "Automated hematology analyzer for complete blood cell counting and analysis." },
+    { name: "Chemistry Analyzer Chemistry Machine", description: "Automated chemistry analyzer for serum and plasma analysis." },
   ],
   "Heating & Temperature Control": [
-    "Ceramic Fiber Muffle Furnace",
-    "Magnetic Stirrer",
-    "LCD Digital Magnetic Stirrer",
-    "Heating Mantle",
-    "Hot Plate",
-    "DHP4-550 LCD Glass Ceramic Hotplate with Timer",
-    "Water Baths",
-    "DUC-10 High Precision Chiller",
-    "DCP-20 Low-Temperature Cooling Circulator Series",
+    { name: "Ceramic Fiber Muffle Furnace", description: "Laboratory muffle furnace with ceramic fiber insulation for high-temperature applications." },
+    { name: "Magnetic Stirrer", description: "Basic magnetic stirrer for mixing and heating laboratory solutions." },
+    { name: "LCD Digital Magnetic Stirrer", description: "Advanced magnetic stirrer with LCD temperature display and control." },
+    { name: "Heating Mantle", description: "Controlled heating mantle for safe laboratory glassware heating." },
+    { name: "Hot Plate", description: "Electric hot plate for heating and cooking laboratory samples." },
+    { name: "DHP4-550 LCD Glass Ceramic Hotplate with Timer", description: "Digital glass-ceramic hotplate with built-in timer for precise heating control." },
+    { name: "Water Baths", description: "Laboratory water bath for temperature-controlled sample incubation." },
+    { name: "DUC-10 High Precision Chiller", description: "Precision temperature chiller for low-temperature laboratory work." },
+    { name: "DCP-20 Low-Temperature Cooling Circulator Series", description: "Advanced cooling circulator system for precise temperature control." },
   ],
   "Mixing & Stirring Equipment": [
-    "Laboratory Shaker",
-    "SK-O180-C Remote-Controlled Smart Destaining Shaker",
-    "Vortex Mixer",
-    "MX-S+ Digital Vortex Mixer",
-    "MX-Pro Infrared Digital Vortex Mixer",
-    "OS-T400-Plus Overhead Stirrer",
-    "OS-T40-Plus/OS-T60-Plus Overhead Stirrer",
-    "DMS4 LCD Glass Ceramic Magnetic Stirrer with Timer",
-    "DMS5 LCD Magnetic Stirrer with Timer",
-    "Mixer",
+    { name: "Laboratory Shaker", description: "Orbital shaker for mixing and homogenizing laboratory samples." },
+    { name: "SK-O180-C Remote-Controlled Smart Destaining Shaker", description: "Remote-controlled shaker system for automated sample destaining and processing." },
+    { name: "Vortex Mixer", description: "Compact vortex mixer for rapid sample mixing and agitation." },
+    { name: "MX-S+ Digital Vortex Mixer", description: "Digital vortex mixer with programmable mixing parameters." },
+    { name: "MX-Pro Infrared Digital Vortex Mixer", description: "Advanced vortex mixer with infrared controls and digital features." },
+    { name: "OS-T400-Plus Overhead Stirrer", description: "High-speed overhead stirrer for large-volume sample processing." },
+    { name: "OS-T40-Plus/OS-T60-Plus Overhead Stirrer", description: "Versatile overhead stirrer series for various stirring applications." },
+    { name: "DMS4 LCD Glass Ceramic Magnetic Stirrer with Timer", description: "Magnetic stirrer with glass ceramic surface and integrated timer." },
+    { name: "DMS5 LCD Magnetic Stirrer with Timer", description: "Advanced magnetic stirrer with LCD display and timing function." },
+    { name: "Mixer", description: "General-purpose laboratory mixer for sample preparation." },
   ],
   "Sample Preparation & Processing": [
-    "Ball Mill",
-    "Grinder",
-    "Gel Loading Tips",
-    "Homogenizer",
-    "Water Distiller",
+    { name: "Ball Mill", description: "Laboratory ball mill for grinding and homogenizing solid samples." },
+    { name: "Grinder", description: "Electric grinder for sample preparation and material reduction." },
+    { name: "Gel Loading Tips", description: "Specialized tips for precise gel loading in electrophoresis." },
+    { name: "Homogenizer", description: "Mechanical homogenizer for tissue and sample disruption." },
+    { name: "Water Distiller", description: "Laboratory water distillation system for pure water production." },
   ],
   "Centrifugation Equipment": [
-    "High-speed Micro Centrifuge",
-    "DG1616R High Speed Refrigerated Centrifuge",
-    "DM0306 Low Speed Centrifuge",
+    { name: "High-speed Micro Centrifuge", description: "Compact high-speed centrifuge for microtubes and small samples." },
+    { name: "DG1616R High Speed Refrigerated Centrifuge", description: "High-speed refrigerated centrifuge for temperature-sensitive samples." },
+    { name: "DM0306 Low Speed Centrifuge", description: "Low-speed centrifuge for gentle sample separation." },
   ],
   "Pipetting & Liquid Handling": [
-    "Mini TopPette Pipette",
-    "HiPette-LTS Light Feel Manual Adjustable Color Pipette",
-    "HiPette Fully Autoclavable Manual 8-Channel Adjustable Colorful Pipette",
-    "Automated Pipette System",
+    { name: "Mini TopPette Pipette", description: "Compact pipette for small volume accurate liquid transfers." },
+    { name: "HiPette-LTS Light Feel Manual Adjustable Color Pipette", description: "Ergonomic manual pipette with adjustable volume settings." },
+    { name: "HiPette Fully Autoclavable Manual 8-Channel Adjustable Colorful Pipette", description: "Sterilizable multi-channel pipette for high-throughput applications." },
+    { name: "Automated Pipette System", description: "Robotic pipetting system for automated sample handling." },
   ],
   "Titration & Analysis Equipment": [
-    "dTrite-Pro Electronic Titration",
-    "Vacuum Pump and Filtration",
+    { name: "dTrite-Pro Electronic Titration", description: "Automated titration system for chemical analysis." },
+    { name: "Vacuum Pump and Filtration", description: "Combined vacuum pump and filtration system for sample preparation." },
   ],
   "Filtration & Purification": [
-    "Vacuum Pump (Oil-Free)",
-    "Stainless Steel Manifold Set (3 Branch)",
-    "Stainless Steel Manifold Set (6 Branch)",
-    "Water Distiller",
+    { name: "Vacuum Pump (Oil-Free)", description: "Oil-free vacuum pump for clean laboratory applications." },
+    { name: "Stainless Steel Manifold Set (3 Branch)", description: "Three-position manifold for simultaneous filtration of multiple samples." },
+    { name: "Stainless Steel Manifold Set (6 Branch)", description: "Six-position manifold enabling efficient batch sample processing." },
+    { name: "Water Distiller", description: "System for producing distilled water for laboratory use." },
   ],
   "Analytical Lab Equipment": [
-    "Spectrophotometer",
-    "Electrochemistry Equipment",
+    { name: "Spectrophotometer", description: "Precision spectrophotometer for optical measurement and analysis." },
+    { name: "Electrochemistry Equipment", description: "Equipment for potentiometric and electrochemical analysis." },
   ],
   "Physics Lab Equipment": [
-    "Physics Lab Equipment",
-    "Mechanical Engineering Equipment",
+    { name: "Physics Lab Equipment", description: "Instruments for physics experiments and demonstrations." },
+    { name: "Mechanical Engineering Equipment", description: "Equipment for mechanical testing and measurement." },
   ],
   "Chemistry Lab Equipment": [
-    "Chemistry Lab Equipment",
-    "Lab Glassware",
+    { name: "Chemistry Lab Equipment", description: "Comprehensive chemistry laboratory instrumentation." },
+    { name: "Lab Glassware", description: "Standard laboratory glassware including beakers, flasks, and apparatus." },
   ],
   "Biology Lab Equipment": [
-    "Biology Lab Equipment",
-    "Microscope",
-    "Hospital And Medical Lab Equipment",
+    { name: "Biology Lab Equipment", description: "Specialized equipment for biological research and testing." },
+    { name: "Microscope", description: "Laboratory microscope for specimen observation and analysis." },
+    { name: "Hospital And Medical Lab Equipment", description: "Clinical and hospital laboratory equipment." },
   ],
   "Educational Equipment": [
-    "Laboratory Appliances",
-    "Maths Lab Equipment",
-    "Educational Laboratory Equipment",
-    "TVET Lab Equipment",
+    { name: "Laboratory Appliances", description: "Laboratory appliances for educational and research institutions." },
+    { name: "Maths Lab Equipment", description: "Equipment for mathematics and geometry demonstrations." },
+    { name: "Educational Laboratory Equipment", description: "Complete laboratory kits for educational institutions." },
+    { name: "TVET Lab Equipment", description: "Vocational training laboratory equipment for TVET institutions." },
   ],
   "Product Display Categories": [
-    "Liquid Handling",
-    "Thermal Control",
-    "Stirring & Heating",
-    "Distilling",
-    "Centrifuges",
-    "Shaker & Mixing",
-    "PCR",
-    "Electrophoresis",
-    "Spectrophotometer",
+    { name: "Liquid Handling", description: "Equipment and consumables for accurate liquid transfer and pipetting." },
+    { name: "Thermal Control", description: "Temperature control equipment for laboratory applications." },
+    { name: "Stirring & Heating", description: "Combined stirring and heating systems for sample preparation." },
+    { name: "Distilling", description: "Distillation equipment for solvent purification and separation." },
+    { name: "Centrifuges", description: "Various centrifugation systems for sample separation." },
+    { name: "Shaker & Mixing", description: "Shakers and mixers for sample homogenization." },
+    { name: "PCR", description: "PCR equipment for DNA amplification and molecular work." },
+    { name: "Electrophoresis", description: "Electrophoresis systems for protein and DNA separation." },
+    { name: "Spectrophotometer", description: "Spectrophotometric instruments for optical analysis." },
   ],
 };
 
@@ -139,13 +139,13 @@ const LaboratoryMaterialTesting = () => {
                   className="p-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col"
                 >
                   <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {product}
+                    {product.name}
                   </h3>
                   <p className="text-sm text-muted-foreground flex-1">
-                    Professional laboratory and testing equipment for accurate results.
+                    {product.description}
                   </p>
                   <Button
-                    onClick={() => openProductQuotation(product)}
+                    onClick={() => openProductQuotation(product.name)}
                     className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white font-medium text-sm"
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
