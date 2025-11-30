@@ -111,33 +111,34 @@ export const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <Card
-                key={index}
-                onClick={() => navigate(service.route)}
-                className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Icon className="h-6 w-6 text-primary" />
+              <li key={index} role="listitem">
+                <Card
+                  onClick={() => navigate(service.route)}
+                  className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-display font-semibold text-foreground mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-display font-semibold text-foreground mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );
