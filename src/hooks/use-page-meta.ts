@@ -98,5 +98,68 @@ export const usePageMeta = ({
     if (image) {
       updateTwitterTag("twitter:image", image);
     }
-  }, [title, description, keywords, image, type]);
+
+    // Update canonical URL
+    if (canonical) {
+      let canonicalLink = document.querySelector('link[rel="canonical"]');
+      if (canonicalLink) {
+        canonicalLink.setAttribute("href", canonical);
+      } else {
+        canonicalLink = document.createElement("link");
+        canonicalLink.setAttribute("rel", "canonical");
+        canonicalLink.setAttribute("href", canonical);
+        document.head.appendChild(canonicalLink);
+      }
+    }
+
+    // Add breadcrumb schema
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbs.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: `https://morisenterprises.com${item.url}`,
+        })),
+      };
+
+      let breadcrumbScript = document.querySelector('script[data-breadcrumb]');
+      if (breadcrumbScript) {
+        breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
+      } else {
+        breadcrumbScript = document.createElement("script");
+        breadcrumbScript.type = "application/ld+json";
+        breadcrumbScript.setAttribute("data-breadcrumb", "true");
+        breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
+        document.head.appendChild(breadcrumbScript);
+      }
+    }
+
+    // Add article/product metadata schema
+    if (type === "article" && (publishedDate || author || modifiedDate)) {
+      const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": type === "product" ? "Product" : "Article",
+        headline: title,
+        description: description,
+        ...(image && { image: image }),
+        ...(publishedDate && { datePublished: publishedDate }),
+        ...(modifiedDate && { dateModified: modifiedDate }),
+        ...(author && { author: { "@type": "Organization", name: author } }),
+      };
+
+      let articleScript = document.querySelector('script[data-article]');
+      if (articleScript) {
+        articleScript.textContent = JSON.stringify(articleSchema);
+      } else {
+        articleScript = document.createElement("script");
+        articleScript.type = "application/ld+json";
+        articleScript.setAttribute("data-article", "true");
+        articleScript.textContent = JSON.stringify(articleSchema);
+        document.head.appendChild(articleScript);
+      }
+    }
+  }, [title, description, keywords, image, type, canonical, breadcrumbs, author, publishedDate, modifiedDate]);
 };
