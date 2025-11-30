@@ -14,12 +14,12 @@ const products = [
   {
     name: "Laboratory Coats and Aprons",
     description: "Professional-grade laboratory coats and aprons for safe chemical and biological handling.",
-    image: "https://images.pexels.com/photos/4033152/pexels-photo-4033152.jpeg",
+    image: "https://images.pexels.com/photos/9574539/pexels-photo-9574539.jpeg",
   },
   {
     name: "Safety Goggles and Face Shields",
     description: "Impact-resistant eye protection devices for chemical splash and particle protection.",
-    image: "https://images.pexels.com/photos/9241704/pexels-photo-9241704.jpeg",
+    image: "https://images.pexels.com/photos/5726796/pexels-photo-5726796.jpeg",
   },
   {
     name: "Gloves (Nitrile, Latex, and Chemical Resistant)",
@@ -29,12 +29,12 @@ const products = [
   {
     name: "Respirators and Face Masks",
     description: "Respiratory protection devices for hazardous fume and particulate protection.",
-    image: "https://images.pexels.com/photos/4197564/pexels-photo-4197564.jpeg",
+    image: "https://images.pexels.com/photos/5040585/pexels-photo-5040585.jpeg",
   },
   {
     name: "Safety Shoes and Boots",
     description: "Protective footwear with slip-resistant soles and chemical-resistant materials.",
-    image: "https://images.pexels.com/photos/23319169/pexels-photo-23319169.jpeg",
+    image: "https://images.pexels.com/photos/6434707/pexels-photo-6434707.jpeg",
   },
   {
     name: "Ear Protection",
@@ -44,12 +44,12 @@ const products = [
   {
     name: "Head Protection - Hard Hats",
     description: "Durable hard hats for protection against falling objects and impact hazards.",
-    image: "https://images.pexels.com/photos/19351986/pexels-photo-19351986.jpeg",
+    image: "https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg",
   },
   {
     name: "First Aid Kits",
     description: "Complete first aid kits stocked with essential medical supplies and emergency treatments.",
-    image: "https://images.pexels.com/photos/6520137/pexels-photo-6520137.jpeg",
+    image: "https://images.pexels.com/photos/6520168/pexels-photo-6520168.jpeg",
   },
   {
     name: "Safety Signage",
@@ -59,7 +59,7 @@ const products = [
   {
     name: "Spill Control Products",
     description: "Absorbent materials and containment products for chemical spill cleanup.",
-    image: "https://images.pexels.com/photos/12585524/pexels-photo-12585524.jpeg",
+    image: "https://images.pexels.com/photos/4867373/pexels-photo-4867373.jpeg",
   },
 ];
 
