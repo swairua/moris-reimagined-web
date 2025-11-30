@@ -116,7 +116,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-secondary/30" aria-label="Contact Us">
+    <section id="contact" className="py-24 bg-secondary/30" aria-label="Contact Us" role="region">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
@@ -130,7 +130,7 @@ export const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <Card className="p-8 bg-card border-border">
-              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate itemScope itemType="https://schema.org/ContactPoint">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
