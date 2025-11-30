@@ -17,10 +17,29 @@ export const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+      toast({
+        title: "Please fill all fields",
+        description: "All fields are required to send your inquiry.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const whatsappMessage = encodeURIComponent(
+      `Hello! I have a new inquiry:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nRequirements:\n${formData.message}`
+    );
+
+    const whatsappUrl = `https://wa.me/254733137332?text=${whatsappMessage}`;
+
+    window.open(whatsappUrl, "_blank");
+
     toast({
       title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
+      description: "You'll be redirected to WhatsApp. We'll get back to you within 24 hours.",
     });
+
     setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
