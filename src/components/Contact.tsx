@@ -36,7 +36,7 @@ export const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
-            Request a Quote
+            Get Your Free Quote Today
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Place your enquiry online! Our sales resource will get to you within 24 hours. We value our customers.
@@ -46,11 +46,11 @@ export const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <Card className="p-8 bg-card border-border">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Your Name
+                      Full Name <span className="text-red-500" aria-label="required">*</span>
                     </label>
                     <Input
                       id="name"
@@ -59,11 +59,13 @@ export const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full"
+                      aria-required="true"
+                      placeholder="John Doe"
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Your Email
+                      Email Address <span className="text-red-500" aria-label="required">*</span>
                     </label>
                     <Input
                       id="email"
@@ -73,12 +75,14 @@ export const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full"
+                      aria-required="true"
+                      placeholder="your@email.com"
                     />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Phone Number
+                    Phone Number <span className="text-red-500" aria-label="required">*</span>
                   </label>
                   <Input
                     id="phone"
@@ -88,11 +92,13 @@ export const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full"
+                    aria-required="true"
+                    placeholder="+254 733 137 332"
                   />
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Your Message
+                    Tell Us About Your Requirements <span className="text-red-500" aria-label="required">*</span>
                   </label>
                   <Textarea
                     id="message"
@@ -102,6 +108,8 @@ export const Contact = () => {
                     required
                     rows={6}
                     className="w-full"
+                    aria-required="true"
+                    placeholder="What products or services are you interested in?"
                   />
                 </div>
                 <Button
@@ -119,13 +127,13 @@ export const Contact = () => {
             <Card className="p-6 bg-card border-border">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <MapPin className="h-6 w-6 text-primary" />
+                  <MapPin className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="font-display font-semibold text-foreground mb-2">Our Address</h3>
-                  <p className="text-muted-foreground">
+                  <address className="text-muted-foreground not-italic">
                     Juja road, Nairobi, Kenya
-                  </p>
+                  </address>
                 </div>
               </div>
             </Card>
@@ -133,11 +141,11 @@ export const Contact = () => {
             <Card className="p-6 bg-card border-border">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Mail className="h-6 w-6 text-primary" />
+                  <Mail className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="font-display font-semibold text-foreground mb-2">Email Us</h3>
-                  <p className="text-muted-foreground">info@morisentreprise.com</p>
+                  <a href="mailto:info@morisentreprise.com" className="text-muted-foreground hover:text-primary transition-colors">info@morisentreprise.com</a>
                   <p className="text-muted-foreground">morisoneadmin@gmail.com</p>
                 </div>
               </div>
@@ -146,12 +154,12 @@ export const Contact = () => {
             <Card className="p-6 bg-card border-border">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Phone className="h-6 w-6 text-primary" />
+                  <Phone className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="font-display font-semibold text-foreground mb-2">Call Us</h3>
-                  <p className="text-muted-foreground">+254 733 137 332</p>
-                  <p className="text-muted-foreground">+254 741 404 094</p>
+                  <a href="tel:+254733137332" className="text-muted-foreground hover:text-primary transition-colors">+254 733 137 332</a>
+                  <p className="text-muted-foreground"><a href="tel:+254741404094" className="hover:text-primary transition-colors">+254 741 404 094</a></p>
                 </div>
               </div>
             </Card>
@@ -159,7 +167,7 @@ export const Contact = () => {
             <Card className="p-6 bg-primary text-primary-foreground">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-primary-foreground/20 rounded-lg flex items-center justify-center">
-                  <Clock className="h-6 w-6 text-primary-foreground" />
+                  <Clock className="h-6 w-6 text-primary-foreground" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="font-display font-semibold mb-2">Business Hours</h3>

@@ -1,8 +1,17 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 const NotFound = () => {
   const location = useLocation();
+
+  usePageMeta({
+    title: "Page Not Found | 404 Error - Moris Enterprises",
+    description: "The page you are looking for could not be found. Return to our homepage to explore laboratory chemicals, medical equipment, and biotechnology solutions.",
+    keywords: "404, page not found, error page",
+    type: "website",
+    canonical: "https://morisenterprises.com/404",
+  });
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
