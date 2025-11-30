@@ -33,6 +33,11 @@ const products = [
     image: "https://cdn.builder.io/api/v1/image/assets%2F0fd8d9ea35ed431fafa410b8025ca861%2F115712022c464cde99a57e24a6f26bef?format=webp&width=800"
   },
   {
+    name: "Filter Cartridges",
+    description: "High-quality borosilicate glass filter cartridges for water filtration systems.",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F0fd8d9ea35ed431fafa410b8025ca861%2F5af16a6886c2451facd55788fcf1ca30?format=webp&width=800"
+  },
+  {
     name: "Test Strips & Kits",
     description: "Easy-to-use test strips for quick water quality assessment and monitoring.",
     image: "https://cdn.builder.io/api/v1/image/assets%2F0fd8d9ea35ed431fafa410b8025ca861%2F6ea96fdb41454ecebcd24982f90de245?format=webp&width=800"
@@ -43,9 +48,19 @@ const products = [
     image: "https://cdn.builder.io/api/v1/image/assets%2F0fd8d9ea35ed431fafa410b8025ca861%2F2fd6541613ba4157a7f5fa201d833041?format=webp&width=800"
   },
   {
+    name: "PP Sediment Filter Cartridges",
+    description: "Polypropylene sediment filter cartridges for pre-filtration and particle removal.",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F0fd8d9ea35ed431fafa410b8025ca861%2Fc1b3d21793a847be8580e8d3e74ba63b?format=webp&width=800"
+  },
+  {
+    name: "Bag Filter Housing",
+    description: "Industrial bag filter housing for large-scale water filtration applications.",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F0fd8d9ea35ed431fafa410b8025ca861%2F91b96b04483f4e4e90a1c3b5892a43e7?format=webp&width=800"
+  },
+  {
     name: "Premium Testing Solutions",
     description: "High-end water testing solutions for professional and industrial applications.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F0fd8d9ea35ed431fafa410b8025ca861%2F6ea96fdb41454ecebcd24982f90de245?format=webp&width=800"
+    image: "https://cdn.builder.io/api/v1/image/assets%2F0fd8d9ea35ed431fafa410b8025ca861%2Fdbc0513fadf04f8da43548fa708316b7?format=webp&width=800"
   }
 ];
 
@@ -94,7 +109,7 @@ const WasteWaterFiltration = () => {
         </p>
         
         <h3 className="text-2xl font-display font-bold text-foreground mt-6 mb-3">
-          Our Water Testing Services Include:
+          Our Water Filtration and Testing Services Include:
         </h3>
         <ul className="text-muted-foreground space-y-2">
           <li className="flex items-start">
@@ -112,6 +127,14 @@ const WasteWaterFiltration = () => {
           <li className="flex items-start">
             <span className="text-primary mr-3">✓</span>
             <span>Multi-parameter water analysis</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-primary mr-3">✓</span>
+            <span>Sediment and particle filtration</span>
+          </li>
+          <li className="flex items-start">
+            <span className="text-primary mr-3">✓</span>
+            <span>Industrial water treatment systems</span>
           </li>
           <li className="flex items-start">
             <span className="text-primary mr-3">✓</span>
