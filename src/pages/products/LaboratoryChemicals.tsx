@@ -6,18 +6,54 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { openProductQuotation } from "@/lib/whatsapp";
 
 const products = [
-  "Biochemicals",
-  "Fine Chemicals",
-  "Enzyme Substrates",
-  "Antibiotics",
-  "Buffers",
-  "Stains and Indicators",
-  "Bio Chemicals",
-  "Ion Pair Reagents",
-  "Speciality Chemicals",
-  "Standard Solutions",
-  "Acids HPLC/AR Grade",
-  "Laboratory Testing Kits",
+  {
+    name: "Biochemicals",
+    description: "High-purity biochemical compounds for research and diagnostic applications including proteins, enzymes, and cofactors.",
+  },
+  {
+    name: "Fine Chemicals",
+    description: "Specialized fine chemicals for pharmaceutical, cosmetic, and industrial synthesis applications.",
+  },
+  {
+    name: "Enzyme Substrates",
+    description: "Substrate molecules designed for enzymatic assays and biochemical research.",
+  },
+  {
+    name: "Antibiotics",
+    description: "Pharmaceutical-grade antibiotics for research, quality control, and therapeutic use.",
+  },
+  {
+    name: "Buffers",
+    description: "pH buffers and buffering systems for maintaining stable solution environments in laboratory work.",
+  },
+  {
+    name: "Stains and Indicators",
+    description: "Dyes and indicator compounds for microscopy, histology, and analytical applications.",
+  },
+  {
+    name: "Bio Chemicals",
+    description: "Specialized biochemical reagents for molecular biology and life science research.",
+  },
+  {
+    name: "Ion Pair Reagents",
+    description: "Reagents for ion-pair chromatography enabling separation of charged molecules.",
+  },
+  {
+    name: "Speciality Chemicals",
+    description: "Custom and specialty chemical formulations for unique laboratory and industrial requirements.",
+  },
+  {
+    name: "Standard Solutions",
+    description: "Calibrated standard solutions with known concentrations for analytical validation and calibration.",
+  },
+  {
+    name: "Acids HPLC/AR Grade",
+    description: "Ultra-pure acids suitable for HPLC and analytical reagent grade applications.",
+  },
+  {
+    name: "Laboratory Testing Kits",
+    description: "Complete testing kits with all reagents needed for specific analytical determinations.",
+  },
 ];
 
 const LaboratoryChemicals = () => {
@@ -82,13 +118,13 @@ const LaboratoryChemicals = () => {
             className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
           >
             <h3 className="text-xl font-display font-semibold text-foreground mb-2">
-              {product}
+              {product.name}
             </h3>
             <p className="text-muted-foreground flex-1">
-              High-purity chemicals and reagents for accurate laboratory analysis.
+              {product.description}
             </p>
             <Button
-              onClick={() => openProductQuotation(product)}
+              onClick={() => openProductQuotation(product.name)}
               className="w-full mt-4 bg-green-500 hover:bg-green-600 text-white font-medium"
             >
               <MessageCircle className="mr-2 h-4 w-4" />
