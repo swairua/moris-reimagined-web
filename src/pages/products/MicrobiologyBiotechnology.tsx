@@ -222,19 +222,30 @@ const MicrobiologyBiotechnology = () => {
                     product.image ? "overflow-hidden" : "p-4"
                   }`}
                 >
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground flex-1">
-                    {product.description}
-                  </p>
-                  <Button
-                    onClick={() => openProductQuotation(product.name)}
-                    className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white font-medium text-sm"
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Quote via WhatsApp
-                  </Button>
+                  {product.image && (
+                    <div className="relative w-full h-48 overflow-hidden bg-muted">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+                  <div className={product.image ? "p-4 flex flex-col h-full" : "p-4 flex flex-col h-full"}>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground flex-1">
+                      {product.description}
+                    </p>
+                    <Button
+                      onClick={() => openProductQuotation(product.name)}
+                      className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white font-medium text-sm"
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      Quote via WhatsApp
+                    </Button>
+                  </div>
                 </Card>
               ))}
             </div>
