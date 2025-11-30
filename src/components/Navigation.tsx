@@ -59,7 +59,7 @@ export const Navigation = () => {
             onClick={() => navigate("/")}
             className="flex items-center gap-3 animate-fade-in cursor-pointer"
           >
-            <img src={logo} alt="Moris Enterprises" className="h-20 w-20" />
+            <img src={logo} alt="Moris Enterprises" className="h-24 w-24" />
             <span className="text-2xl font-display font-bold text-foreground">
               Moris Enterprises
             </span>
