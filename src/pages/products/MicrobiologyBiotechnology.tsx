@@ -7,7 +7,7 @@ import { openProductQuotation } from "@/lib/whatsapp";
 
 const productCategories = {
   "Culture Media & Agars (500g)": [
-    { name: "R2A Agar", description: "Low-nutrient agar for isolation of slow-growing heterotrophic bacteria from water." },
+    { name: "R2A Agar", description: "Low-nutrient agar for isolation of slow-growing heterotrophic bacteria from water.", image: "https://cdn.builder.io/api/v1/image/assets%2Fe9044b82bebf49928ccb9f4ba8ad01b9%2F07c22b9125e34c85832e67fc4f3c1d61?format=webp&width=800" },
     { name: "AATCC Bacteriostasis Agar", description: "Specialized agar for evaluating bacteriostatic properties of textiles." },
     { name: "Alkaline Peptone Water", description: "Enrichment medium for isolation of Vibrio species." },
     { name: "Antibiotic Assay Medium", description: "Standardized medium for antibiotic potency testing and microbiological assays." },
@@ -94,7 +94,7 @@ const productCategories = {
     { name: "Sheep Blood Agar Base (RDM-SBA-01)", description: "Enriched blood agar for gram-positive and fastidious organism culture." },
   ],
   "Broths & Fermentation Media (500g)": [
-    { name: "Soya Bean Casein Digest Medium (TS Broth)", description: "Standard broth for non-selective microbial growth and enumeration." },
+    { name: "Soya Bean Casein Digest Medium (TS Broth)", description: "Standard broth for non-selective microbial growth and enumeration.", image: "https://cdn.builder.io/api/v1/image/assets%2Fe9044b82bebf49928ccb9f4ba8ad01b9%2Fb2b0cfbcc0414644adb624adeb1e4292?format=webp&width=800" },
     { name: "Malt Extract Broth", description: "Enriched broth for fungal cultivation." },
     { name: "Brilliant Green Broth", description: "Selective enrichment broth for Salmonella isolation." },
     { name: "MRS Broth", description: "Selective broth for lactic acid bacteria cultivation." },
@@ -131,7 +131,7 @@ const productCategories = {
     { name: "Rhamnose Broth", description: "Medium for rhamnose fermentation testing." },
   ],
   "Specialty & Diagnostic Media": [
-    { name: "Anaerobic Fermentation Medium Base", description: "Medium for cultivating obligate anaerobes." },
+    { name: "Anaerobic Fermentation Medium Base", description: "Medium for cultivating obligate anaerobes.", image: "https://cdn.builder.io/api/v1/image/assets%2Fe9044b82bebf49928ccb9f4ba8ad01b9%2F74e5aa7c6f1c46c9aa2189128f8ad0f6?format=webp&width=800" },
     { name: "b-Streptococcus Selective Agar Base", description: "Selective medium for β-hemolytic streptococci." },
     { name: "Urea Agar (Christensen)", description: "Medium for urease enzyme detection." },
     { name: "Lauryl Sulphate Broth", description: "Broth for presumptive coliform detection." },
@@ -169,7 +169,7 @@ const productCategories = {
     { name: "Buffered Listeria Enrichment Broth Base", description: "Enhanced enrichment medium for Listeria." },
   ],
   "Chemical Reagents & Indicators": [
-    { name: "Kovacs Reagent", description: "Reagent for indole test in bacterial identification." },
+    { name: "Kovacs Reagent", description: "Reagent for indole test in bacterial identification.", image: "https://cdn.builder.io/api/v1/image/assets%2Fe9044b82bebf49928ccb9f4ba8ad01b9%2F89ef01c521d74acda73de2a03c44c803?format=webp&width=800" },
     { name: "Salicylic Acid AR", description: "Analytical reagent grade salicylic acid." },
     { name: "Pentane Sulphonic Acid Sodium Salt Monohydrate AR/HPLC", description: "HPLC-grade ion pair reagent for chromatography." },
     { name: "Phenolphthalein pH Indicator 100g AR", description: "Analytical grade pH indicator dye." },
@@ -179,7 +179,7 @@ const productCategories = {
     { name: "Sodium Dodecyl Sulfate Polymyxin Sucrose", description: "Selective agent for microbiological media." },
   ],
   "Microbiological Testing Kits": [
-    { name: "Wagtech Potatech+", description: "Advanced portable microbiological water testing device." },
+    { name: "Wagtech Potatech+", description: "Advanced portable microbiological water testing device.", image: "https://cdn.builder.io/api/v1/image/assets%2Fe9044b82bebf49928ccb9f4ba8ad01b9%2F4a80a60b51244fd5b31274d42c52df31?format=webp&width=800" },
     { name: "Wagtech Potalab+", description: "Laboratory-grade Wagtech microbiological testing system." },
     { name: "Wagtech Potakit", description: "Complete kit for water microbiological testing." },
     { name: "Wagtech Potacheck", description: "Rapid screening system for microbial analysis." },
@@ -218,21 +218,34 @@ const MicrobiologyBiotechnology = () => {
               {items.map((product, index) => (
                 <Card
                   key={index}
-                  className="p-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                  className={`hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col ${
+                    product.image ? "overflow-hidden" : "p-4"
+                  }`}
                 >
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground flex-1">
-                    {product.description}
-                  </p>
-                  <Button
-                    onClick={() => openProductQuotation(product.name)}
-                    className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white font-medium text-sm"
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Quote via WhatsApp
-                  </Button>
+                  {product.image && (
+                    <div className="relative w-full h-48 overflow-hidden bg-muted">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+                  <div className={product.image ? "p-4 flex flex-col h-full" : "p-4 flex flex-col h-full"}>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground flex-1">
+                      {product.description}
+                    </p>
+                    <Button
+                      onClick={() => openProductQuotation(product.name)}
+                      className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white font-medium text-sm"
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      Quote via WhatsApp
+                    </Button>
+                  </div>
                 </Card>
               ))}
             </div>
