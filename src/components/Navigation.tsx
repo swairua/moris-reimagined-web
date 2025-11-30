@@ -189,19 +189,27 @@ export const Navigation = () => {
 
               {/* Mobile Products Menu */}
               <div className="border-t border-border pt-2">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Biomedical Products</p>
-                {productCategories.map((category) => (
-                  <button
-                    key={category.path}
-                    onClick={() => {
-                      navigate(category.path);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="block w-full text-left text-foreground hover:text-primary transition-colors py-2 pl-4"
-                  >
-                    {category.name}
-                  </button>
-                ))}
+                <p className="text-sm font-semibold text-muted-foreground mb-3">Biomedical Products</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {productCategories.map((category) => {
+                    const IconComponent = category.icon;
+                    return (
+                      <button
+                        key={category.path}
+                        onClick={() => {
+                          navigate(category.path);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="flex items-center gap-2 p-3 rounded-lg hover:bg-accent transition-colors"
+                      >
+                        <IconComponent className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm text-foreground hover:text-primary transition-colors line-clamp-2">
+                          {category.name}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
               <button
