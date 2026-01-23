@@ -1,10 +1,10 @@
 import { ProductPageLayout } from "@/components/ProductPageLayout";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { openProductQuotation } from "@/lib/whatsapp";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const products = [
   {
@@ -44,8 +44,11 @@ const products = [
   },
 ];
 
-
 const AutomobileSupplies = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
   usePageMeta({
     title: "KOMU Coils Springs & Suspension Components | Professional Auto Parts Kenya",
     description: "Premium KOMU Coils Springs and suspension components for automotive service centers. Professional-grade coil springs, shock absorbers, and suspension parts in Kenya. Get competitive quotations for high-quality auto suspension components.",
@@ -59,40 +62,115 @@ const AutomobileSupplies = () => {
     ],
   });
 
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setShowLeftArrow(scrollLeft > 0);
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 320;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+      // Check initial state
+      handleScroll();
+      return () => container.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
+  // Product Card Component
+  const ProductCard = ({ product }: { product: typeof products[0] }) => (
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col flex-shrink-0 w-full sm:w-auto">
+      <div className="relative w-full h-48 bg-muted overflow-hidden">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-lg font-display font-semibold text-foreground mb-2">
+          {product.name}
+        </h3>
+        <p className="text-sm text-muted-foreground mb-4 flex-grow">
+          {product.description}
+        </p>
+        <Button
+          onClick={() => openProductQuotation(product.name)}
+          className="w-full bg-green-500 hover:bg-green-600 text-white font-medium"
+        >
+          <MessageCircle className="mr-2 h-4 w-4" />
+          Request Quotation via WhatsApp
+        </Button>
+      </div>
+    </Card>
+  );
+
   return (
     <ProductPageLayout
       title="Automobile Supplies"
       description="Our comprehensive range of KOMU Coils Springs and professional-grade suspension components designed for automotive service centers and vehicle maintenance."
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {products.map((product, index) => (
-          <Card
-            key={index}
-            className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+      {/* Mobile Horizontal Scroll (Small screens) */}
+      <div className="md:hidden mb-12">
+        <div className="relative">
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto pb-4 scroll-smooth"
+            style={{ scrollBehavior: "smooth" }}
           >
-            <div className="relative w-full h-48 bg-muted overflow-hidden">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-lg font-display font-semibold text-foreground mb-2">
-                {product.name}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                {product.description}
-              </p>
-              <Button
-                onClick={() => openProductQuotation(product.name)}
-                className="w-full bg-green-500 hover:bg-green-600 text-white font-medium"
-              >
-                <MessageCircle className="mr-2 h-4 w-4" />
-                Request Quotation via WhatsApp
-              </Button>
-            </div>
-          </Card>
+            {products.map((product, index) => (
+              <div key={index} className="w-80 flex-shrink-0">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
+
+          {/* Left Scroll Button */}
+          {showLeftArrow && (
+            <button
+              onClick={() => scroll("left")}
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 z-10 transition-all"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-6 h-6 text-primary" />
+            </button>
+          )}
+
+          {/* Right Scroll Button */}
+          {showRightArrow && (
+            <button
+              onClick={() => scroll("right")}
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 z-10 transition-all"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-6 h-6 text-primary" />
+            </button>
+          )}
+        </div>
+
+        {/* Scroll indicator dots */}
+        <div className="flex justify-center gap-2 mt-4">
+          <div className="text-xs text-muted-foreground">Swipe to see more products</div>
+        </div>
+      </div>
+
+      {/* Desktop Grid (Medium screens and up) */}
+      <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {products.map((product, index) => (
+          <ProductCard key={index} product={product} />
         ))}
       </div>
 
