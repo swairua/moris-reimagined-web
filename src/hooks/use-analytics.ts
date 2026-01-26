@@ -134,3 +134,47 @@ export const useAnalytics = () => {
     getEventTracker,
   };
 };
+
+/**
+ * Hook for automatic page view tracking with React Router
+ * Place this hook in a component that's always rendered (e.g., in the main App component)
+ * It will automatically track page views whenever the route changes
+ *
+ * @example
+ * // In App.tsx or a wrapper component
+ * const { trackPageView } = useAnalytics();
+ * useAnalyticsPageTracking();
+ */
+export const useAnalyticsPageTracking = () => {
+  const location = useLocation();
+  const { trackPageView } = useAnalytics();
+
+  useEffect(() => {
+    // Extract page title from document or create from pathname
+    const pageTitle = document.title || getPageTitleFromPath(location.pathname);
+
+    // Track the page view
+    trackPageView(location.pathname, pageTitle);
+  }, [location.pathname, trackPageView]);
+};
+
+/**
+ * Helper function to generate a readable page title from pathname
+ * Converts paths like "/products/medical-equipment" to "Medical Equipment"
+ */
+const getPageTitleFromPath = (pathname: string): string => {
+  if (pathname === '/') {
+    return 'Home';
+  }
+
+  return pathname
+    .split('/')
+    .filter(Boolean)
+    .map(segment =>
+      segment
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+    )
+    .join(' > ');
+};
