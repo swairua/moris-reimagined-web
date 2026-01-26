@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Mail, Phone, Clock, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { useState, useEffect } from "react";
 import { createWhatsAppMessage, openWhatsApp, getWhatsAppNumber } from "@/lib/whatsapp";
 
