@@ -6,7 +6,60 @@ import { JSDOM } from "jsdom";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.join(__dirname, "../dist");
-const indexHtmlPath = path.join(distDir, "index.html");
+const indexHtmlPath = path.join(__dirname, "../index.html");
+
+// Import automobile products data
+const automobileProducts = [
+  {
+    id: "komu-coils-blue",
+    name: "KOMU Coils Springs - Blue",
+    title: "KOMU Blue Suspension Coil Springs | Premium Auto Parts Kenya",
+    description: "KOMU Blue suspension coil springs - premium-grade automotive suspension components. High tensile strength, corrosion-resistant finish. Load-bearing capacity engineered for sedan vehicles. Professional automotive parts supplier in Kenya.",
+    keywords: "KOMU blue coils, KOMU blue springs, suspension coils, coil springs Kenya, sedan suspension, KOMU springs",
+  },
+  {
+    id: "komu-coils-yellow",
+    name: "KOMU Coils Springs - Yellow",
+    title: "KOMU Yellow Heavy-Duty Suspension Springs | Commercial Vehicle Parts",
+    description: "KOMU Yellow suspension springs - premium coil springs for enhanced vehicle suspension. Superior load-bearing capacity for commercial vehicles. Durable automotive suspension components for Kenya's demanding roads.",
+    keywords: "KOMU yellow coils, KOMU yellow springs, heavy-duty suspension, commercial vehicle springs, KOMU automotive",
+  },
+  {
+    id: "komu-coils-dark-blue",
+    name: "KOMU Coils Springs - Dark Blue",
+    title: "KOMU Dark Blue Heavy-Duty Coil Springs | Professional Auto Parts",
+    description: "KOMU Dark Blue coil springs - heavy-duty suspension components for reliable vehicle performance. Engineered for longevity and stability. Professional-grade KOMU springs trusted by automotive service centers across Kenya.",
+    keywords: "KOMU dark blue coils, KOMU dark blue springs, heavy-duty springs, automotive suspension Kenya",
+  },
+  {
+    id: "komu-coils-orange-red",
+    name: "KOMU Coils Springs - Orange/Red",
+    title: "KOMU Orange-Red Heavy-Duty Suspension Springs | Truck Parts Kenya",
+    description: "KOMU Orange-Red suspension coil springs - high-performance springs for heavy-duty automotive applications. Maximum durability for trucks and commercial vehicles. KOMU coils engineered for superior suspension control.",
+    keywords: "KOMU orange red coils, KOMU red springs, truck suspension, heavy-duty automotive, KOMU Kenya",
+  },
+  {
+    id: "komu-coils-standard",
+    name: "KOMU Coils Springs - Standard",
+    title: "KOMU Standard Suspension Coil Springs | Reliable Auto Repair Parts",
+    description: "KOMU Standard suspension coil springs - reliable automotive springs for routine vehicle maintenance. Consistent performance for everyday repair needs. KOMU springs - trusted choice for professional auto repair in Kenya.",
+    keywords: "KOMU standard coils, KOMU standard springs, reliable suspension, auto repair springs Kenya",
+  },
+  {
+    id: "komu-coils-premium",
+    name: "KOMU Coils Springs - Premium Suspension",
+    title: "KOMU Premium Suspension Coil Springs | Top-Tier Auto Parts Kenya",
+    description: "KOMU Premium suspension springs - top-tier coil springs for complete vehicle suspension overhaul. Superior load capacity and durability. KOMU premium components - engineered for maximum vehicle performance and safety.",
+    keywords: "KOMU premium coils, KOMU premium springs, premium suspension, high-performance springs Kenya",
+  },
+  {
+    id: "automotive-shock-absorbers",
+    name: "Automotive Shock Absorbers",
+    title: "Professional Shock Absorbers | KOMU Suspension System Components Kenya",
+    description: "Professional-grade shock absorbers designed for optimal vehicle suspension control. Compatible with KOMU suspension systems. Premium quality automotive shock absorbers for Kenya.",
+    keywords: "shock absorbers, suspension shock absorbers, KOMU compatible, shock absorber Kenya, automotive suspension",
+  },
+];
 
 // Routes to prerender with their metadata
 const routesToPrerender = [
