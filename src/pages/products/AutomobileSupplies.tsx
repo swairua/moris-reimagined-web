@@ -1,50 +1,15 @@
 import { ProductPageLayout } from "@/components/ProductPageLayout";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { MessageCircle, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { openProductQuotation } from "@/lib/whatsapp";
 import { useState, useRef, useEffect } from "react";
-
-const products = [
-  {
-    name: "KOMU Coils Springs - Blue",
-    description: "KOMU Blue suspension coil springs - premium-grade automotive suspension components. High tensile strength, corrosion-resistant finish. Load-bearing capacity engineered for sedan vehicles. Professional automotive parts supplier in Kenya.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F03ba6d13283e4f6e88691a5c602fc9e3%2F8564aa54272b435f8016c3550366fdc1?format=webp&width=800",
-  },
-  {
-    name: "KOMU Coils Springs - Yellow",
-    description: "KOMU Yellow suspension springs - premium coil springs for enhanced vehicle suspension. Superior load-bearing capacity for commercial vehicles. Durable automotive suspension components for Kenya's demanding roads.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F03ba6d13283e4f6e88691a5c602fc9e3%2Fcc3a9f9a91fc4250a63e8a11a65028bd?format=webp&width=800",
-  },
-  {
-    name: "KOMU Coils Springs - Dark Blue",
-    description: "KOMU Dark Blue coil springs - heavy-duty suspension components for reliable vehicle performance. Engineered for longevity and stability. Professional-grade KOMU springs trusted by automotive service centers across Kenya.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F03ba6d13283e4f6e88691a5c602fc9e3%2F278e671287c74a3db3a9a7e0e1513949?format=webp&width=800",
-  },
-  {
-    name: "KOMU Coils Springs - Orange/Red",
-    description: "KOMU Orange-Red suspension coil springs - high-performance springs for heavy-duty automotive applications. Maximum durability for trucks and commercial vehicles. KOMU coils engineered for superior suspension control.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F03ba6d13283e4f6e88691a5c602fc9e3%2Fa138c58dc0d44e1c80507118fe1a6ae8?format=webp&width=800",
-  },
-  {
-    name: "KOMU Coils Springs - Standard",
-    description: "KOMU Standard suspension coil springs - reliable automotive springs for routine vehicle maintenance. Consistent performance for everyday repair needs. KOMU springs - trusted choice for professional auto repair in Kenya.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F03ba6d13283e4f6e88691a5c602fc9e3%2Ff89232996c3b4494b45abcf5e8d2d4b4?format=webp&width=800",
-  },
-  {
-    name: "KOMU Coils Springs - Premium Suspension",
-    description: "KOMU Premium suspension springs - top-tier coil springs for complete vehicle suspension overhaul. Superior load capacity and durability. KOMU premium components - engineered for maximum vehicle performance and safety.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F03ba6d13283e4f6e88691a5c602fc9e3%2F26872f98e1bc469c95cbe083f66457f9?format=webp&width=800",
-  },
-  {
-    name: "Automotive Shock Absorbers",
-    description: "Professional-grade shock absorbers designed for optimal vehicle suspension control. Compatible with KOMU suspension systems. Premium quality automotive shock absorbers for Kenya.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F03ba6d13283e4f6e88691a5c602fc9e3%2Ffad79b65501a4b4b95e1a64b6e08a0e5?format=webp&width=800",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import { automobileProducts } from "@/data/automobileProducts";
 
 const AutomobileSupplies = () => {
+  const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -91,12 +56,12 @@ const AutomobileSupplies = () => {
   }, []);
 
   // Product Card Component
-  const ProductCard = ({ product }: { product: typeof products[0] }) => (
+  const ProductCard = ({ product }: { product: typeof automobileProducts[0] }) => (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col flex-shrink-0 w-full sm:w-auto">
       <div className="relative w-full h-48 bg-muted overflow-hidden">
         <img
           src={product.image}
-          alt={product.name}
+          alt={product.imageAlt}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
       </div>
@@ -105,15 +70,25 @@ const AutomobileSupplies = () => {
           {product.name}
         </h3>
         <p className="text-sm text-muted-foreground mb-4 flex-grow">
-          {product.description}
+          {product.shortDescription}
         </p>
-        <Button
-          onClick={() => openProductQuotation(product.name)}
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-medium"
-        >
-          <MessageCircle className="mr-2 h-4 w-4" />
-          Request Quotation via WhatsApp
-        </Button>
+        <div className="flex flex-col gap-2">
+          <Button
+            onClick={() => navigate(`/products/automobile-supplies/${product.id}`)}
+            variant="outline"
+            className="w-full"
+          >
+            View Details
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+          <Button
+            onClick={() => openProductQuotation(product.name)}
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium"
+          >
+            <MessageCircle className="mr-2 h-4 w-4" />
+            Request Quotation
+          </Button>
+        </div>
       </div>
     </Card>
   );
@@ -131,8 +106,8 @@ const AutomobileSupplies = () => {
             className="flex gap-6 overflow-x-auto pb-4 scroll-smooth"
             style={{ scrollBehavior: "smooth" }}
           >
-            {products.map((product, index) => (
-              <div key={index} className="w-80 flex-shrink-0">
+            {automobileProducts.map((product) => (
+              <div key={product.id} className="w-80 flex-shrink-0">
                 <ProductCard product={product} />
               </div>
             ))}
@@ -169,8 +144,8 @@ const AutomobileSupplies = () => {
 
       {/* Desktop Grid (Medium screens and up) */}
       <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {products.map((product, index) => (
-          <ProductCard key={index} product={product} />
+        {automobileProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
 
