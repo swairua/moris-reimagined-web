@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { openProductQuotation } from "@/lib/whatsapp";
 import { getProductBySlug, automobileProducts } from "@/data/automobileProducts";
 import NotFound from "@/pages/NotFound";
@@ -12,6 +13,7 @@ import NotFound from "@/pages/NotFound";
 const ProductDetail = () => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
+  const { trackEvent } = useAnalytics();
 
   const product = productId ? getProductBySlug(productId) : null;
 
@@ -165,7 +167,14 @@ const ProductDetail = () => {
               </div>
 
               <Button
-                onClick={() => openProductQuotation(product.name)}
+                onClick={() => {
+                  trackEvent('product_quotation_requested', {
+                    product_id: product.id,
+                    product_name: product.name,
+                    category: product.category,
+                  });
+                  openProductQuotation(product.name);
+                }}
                 size="lg"
                 className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-6"
               >
@@ -273,9 +282,15 @@ const ProductDetail = () => {
                       {relatedProduct.shortDescription}
                     </p>
                     <Button
-                      onClick={() =>
-                        navigate(`/products/automobile-supplies/${relatedProduct.id}`)
-                      }
+                      onClick={() => {
+                        trackEvent('related_product_clicked', {
+                          current_product_id: product.id,
+                          current_product_name: product.name,
+                          related_product_id: relatedProduct.id,
+                          related_product_name: relatedProduct.name,
+                        });
+                        navigate(`/products/automobile-supplies/${relatedProduct.id}`);
+                      }}
                       variant="outline"
                       className="w-full"
                     >

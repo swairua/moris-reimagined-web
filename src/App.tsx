@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { useAnalyticsPageTracking } from "@/hooks/use-analytics";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MedicalEquipment from "./pages/products/MedicalEquipment";
@@ -24,9 +25,15 @@ import ProductDetail from "./pages/products/ProductDetail";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
+/**
+ * Inner component that handles analytics page tracking
+ * Must be inside BrowserRouter to use useLocation
+ */
+const AppRoutes = () => {
+  useAnalyticsPageTracking();
+
+  return (
+    <>
       <Toaster />
       <Sonner />
       <ScrollToTop />
@@ -51,6 +58,14 @@ const App = () => (
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+    </>
+  );
+};
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   </QueryClientProvider>
 );

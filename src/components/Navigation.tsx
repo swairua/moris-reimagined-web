@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Menu, X, ChevronDown, HeartPulse, Microscope, Beaker, FlaskConical, Droplet, TestTube, Shield, Waves, Pipette, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAnalytics } from "@/hooks/use-analytics";
 import logo from "@/assets/logo.png";
 
 export const Navigation = () => {
@@ -14,6 +15,7 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const { trackEvent } = useAnalytics();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,7 @@ export const Navigation = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
+    trackEvent('navigation_link_clicked', { section: id });
     navigate("/");
     setTimeout(() => {
       const element = document.getElementById(id);
@@ -67,7 +70,10 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-24">
           {/* Logo Section */}
           <button
-            onClick={() => navigate("/")}
+            onClick={() => {
+              trackEvent('logo_clicked');
+              navigate("/");
+            }}
             className="flex items-center gap-2 animate-fade-in cursor-pointer hover:opacity-80 transition-opacity"
           >
             <img
@@ -120,6 +126,7 @@ export const Navigation = () => {
                         <button
                           key={category.path}
                           onClick={() => {
+                            trackEvent('product_category_clicked', { category: category.name });
                             navigate(category.path);
                             setIsProductsDropdownOpen(false);
                           }}
@@ -140,7 +147,10 @@ export const Navigation = () => {
             </div>
 
             <button
-              onClick={() => navigate("/products/automobile-supplies")}
+              onClick={() => {
+                trackEvent('product_category_clicked', { category: 'Automobile Supplies' });
+                navigate("/products/automobile-supplies");
+              }}
               className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 relative group"
             >
               Automobile Supplies
@@ -152,7 +162,10 @@ export const Navigation = () => {
 
             {/* CTA Button */}
             <Button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => {
+                trackEvent('request_quote_clicked', { location: 'desktop_nav' });
+                scrollToSection("contact");
+              }}
               className="ml-2 bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg px-6 py-2 h-auto"
             >
               Request Quote
@@ -202,7 +215,10 @@ export const Navigation = () => {
                 {navItems.map((item) => (
                   <button
                     key={item.label}
-                    onClick={item.action}
+                    onClick={() => {
+                      trackEvent('mobile_nav_link_clicked', { link: item.label });
+                      item.action();
+                    }}
                     className="text-foreground hover:text-primary hover:bg-primary/5 transition-all px-4 py-3 rounded-lg font-medium text-left"
                   >
                     {item.label}
@@ -220,6 +236,7 @@ export const Navigation = () => {
                       <button
                         key={category.path}
                         onClick={() => {
+                          trackEvent('product_category_clicked', { category: category.name, location: 'mobile' });
                           navigate(category.path);
                           setIsMobileMenuOpen(false);
                         }}
@@ -238,7 +255,10 @@ export const Navigation = () => {
               {/* CTA Section */}
               <div className="border-t border-gray-100 p-4 mt-4">
                 <Button
-                  onClick={() => scrollToSection("contact")}
+                  onClick={() => {
+                    trackEvent('request_quote_clicked', { location: 'mobile_nav' });
+                    scrollToSection("contact");
+                  }}
                   className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-semibold rounded-lg py-3 h-auto"
                 >
                   Request Quote

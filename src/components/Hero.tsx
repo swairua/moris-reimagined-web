@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useAnalytics } from "@/hooks/use-analytics";
 
 const sliderImages = [
   {
@@ -19,6 +20,7 @@ const sliderImages = [
 
 export const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { trackEvent } = useAnalytics();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,12 +30,14 @@ export const Hero = () => {
   }, []);
 
   const goToPrevious = () => {
+    trackEvent('hero_slider_navigation', { direction: 'previous' });
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? sliderImages.length - 1 : prevIndex - 1
     );
   };
 
   const goToNext = () => {
+    trackEvent('hero_slider_navigation', { direction: 'next' });
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % sliderImages.length);
   };
 
@@ -86,7 +90,10 @@ export const Hero = () => {
         {sliderImages.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentImageIndex(index)}
+            onClick={() => {
+              trackEvent('hero_slider_indicator_clicked', { slide_index: index });
+              setCurrentImageIndex(index);
+            }}
             className={`h-3 rounded-full transition-all duration-300 ${
               index === currentImageIndex
                 ? "bg-white w-8"
@@ -118,14 +125,20 @@ export const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
               size="lg"
-              onClick={() => scrollToSection("services")}
+              onClick={() => {
+                trackEvent('hero_cta_clicked', { button: 'explore_services' });
+                scrollToSection("services");
+              }}
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-lg px-8 py-6"
             >
               Explore Our Services
             </Button>
             <Button
               size="lg"
-              onClick={() => scrollToSection("contact")}
+              onClick={() => {
+                trackEvent('hero_cta_clicked', { button: 'contact_us' });
+                scrollToSection("contact");
+              }}
               className="bg-white/20 border-2 border-primary-foreground text-primary-foreground hover:bg-white/30 text-lg px-8 py-6 backdrop-blur-sm"
             >
               <Phone className="mr-2 h-5 w-5" />
