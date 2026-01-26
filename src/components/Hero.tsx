@@ -20,6 +20,7 @@ const sliderImages = [
 
 export const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { trackEvent } = useAnalytics();
 
   useEffect(() => {
     const interval = setInterval(() => {
