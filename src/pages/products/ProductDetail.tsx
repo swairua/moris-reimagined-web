@@ -13,6 +13,7 @@ import NotFound from "@/pages/NotFound";
 const ProductDetail = () => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
+  const { trackEvent } = useAnalytics();
 
   const product = productId ? getProductBySlug(productId) : null;
 
