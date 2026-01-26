@@ -6,7 +6,7 @@ import { JSDOM } from "jsdom";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.join(__dirname, "../dist");
-const indexHtmlPath = path.join(__dirname, "../index.html");
+const indexHtmlPath = path.join(distDir, "index.html");
 
 // Import automobile products data
 const automobileProducts = [
