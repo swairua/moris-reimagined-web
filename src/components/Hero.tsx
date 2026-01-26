@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useAnalytics } from "@/hooks/use-analytics";
 
 const sliderImages = [
   {
