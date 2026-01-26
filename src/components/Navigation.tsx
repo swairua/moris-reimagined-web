@@ -126,6 +126,7 @@ export const Navigation = () => {
                         <button
                           key={category.path}
                           onClick={() => {
+                            trackEvent('product_category_clicked', { category: category.name });
                             navigate(category.path);
                             setIsProductsDropdownOpen(false);
                           }}
