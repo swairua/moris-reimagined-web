@@ -70,7 +70,10 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-24">
           {/* Logo Section */}
           <button
-            onClick={() => navigate("/")}
+            onClick={() => {
+              trackEvent('logo_clicked');
+              navigate("/");
+            }}
             className="flex items-center gap-2 animate-fade-in cursor-pointer hover:opacity-80 transition-opacity"
           >
             <img
