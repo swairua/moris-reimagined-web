@@ -56,12 +56,12 @@ const AutomobileSupplies = () => {
   }, []);
 
   // Product Card Component
-  const ProductCard = ({ product }: { product: typeof products[0] }) => (
+  const ProductCard = ({ product }: { product: typeof automobileProducts[0] }) => (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col flex-shrink-0 w-full sm:w-auto">
       <div className="relative w-full h-48 bg-muted overflow-hidden">
         <img
           src={product.image}
-          alt={product.name}
+          alt={product.imageAlt}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
       </div>
@@ -70,15 +70,25 @@ const AutomobileSupplies = () => {
           {product.name}
         </h3>
         <p className="text-sm text-muted-foreground mb-4 flex-grow">
-          {product.description}
+          {product.shortDescription}
         </p>
-        <Button
-          onClick={() => openProductQuotation(product.name)}
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-medium"
-        >
-          <MessageCircle className="mr-2 h-4 w-4" />
-          Request Quotation via WhatsApp
-        </Button>
+        <div className="flex flex-col gap-2">
+          <Button
+            onClick={() => navigate(`/products/automobile-supplies/${product.id}`)}
+            variant="outline"
+            className="w-full"
+          >
+            View Details
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+          <Button
+            onClick={() => openProductQuotation(product.name)}
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium"
+          >
+            <MessageCircle className="mr-2 h-4 w-4" />
+            Request Quotation
+          </Button>
+        </div>
       </div>
     </Card>
   );
