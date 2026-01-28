@@ -177,6 +177,11 @@ export const automobileProducts: AutomobileProduct[] = [
       application: "Universal shock absorption",
     },
     category: "Shock Absorbers",
+    priceRange: {
+      minPrice: 6000,
+      maxPrice: 9000,
+      currency: "KES",
+    },
     availability: "In Stock",
   },
 ];
