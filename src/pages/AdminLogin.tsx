@@ -42,7 +42,7 @@ export default function AdminLogin() {
             <div className="space-y-2">
               <Input
                 type="email"
-                placeholder="admin@moris.co.ke"
+                placeholder="admin@morisentreprises.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
