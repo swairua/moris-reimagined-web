@@ -35,7 +35,7 @@ require_once __DIR__ . '/TrackingHandler.php';
 
 // Parse URL
 $request_uri = $_SERVER['REQUEST_URI'];
-$base_path = '/api';
+$base_path = '/api.php';
 
 // Remove query string
 if (strpos($request_uri, '?') !== false) {
@@ -52,6 +52,11 @@ if (strpos($request_uri, $base_path) === 0) {
 // Ensure route starts with /
 if (!empty($route) && $route[0] !== '/') {
     $route = '/' . $route;
+}
+
+// If route is empty, set it to /
+if (empty($route)) {
+    $route = '/';
 }
 
 $method = $_SERVER['REQUEST_METHOD'];
