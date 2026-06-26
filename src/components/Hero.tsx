@@ -59,6 +59,8 @@ export const Hero = () => {
             alt={image.alt}
             loading={index === 0 ? "eager" : "lazy"}
             decoding="async"
+            width={800}
+            height={600}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
               index === currentImageIndex ? "opacity-100" : "opacity-0"
             }`}
