@@ -148,7 +148,7 @@ export const setRobotDirectives = (
   const directives = [
     index ? "index" : "noindex",
     follow ? "follow" : "nofollow",
-    imageIndex ? "imagindexable" : "noimageindex",
+    imageIndex ? "imageindexable" : "noimageindex",
     snippet ? "max-snippet:-1" : "max-snippet:0",
     videoPreview ? "max-video-preview:-1" : "max-video-preview:0",
   ];
@@ -171,7 +171,7 @@ export const injectBreadcrumbSchema = (
       name: item.name,
       item: item.url.startsWith("http")
         ? item.url
-        : `https://morisenterprises.com${item.url}`,
+        : `https://morisentreprises.com${item.url}`,
     })),
   };
 
@@ -199,6 +199,36 @@ export const injectContactPointSchema = (
 
   const script = document.createElement("script");
   script.type = "application/ld+json";
+  script.textContent = JSON.stringify(schema);
+  document.head.appendChild(script);
+};
+
+/**
+ * Add CollectionPage schema for product category pages
+ */
+export const injectCollectionPageSchema = (
+  name: string,
+  description: string,
+  url: string,
+  itemCount?: number
+): void => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: name,
+    description: description,
+    url: url,
+    ...(itemCount && { numberOfItems: itemCount }),
+    mainEntity: {
+      "@type": "ItemList",
+      name: name,
+      ...(itemCount && { numberOfItems: itemCount }),
+    },
+  };
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.setAttribute("data-collection-schema", "true");
   script.textContent = JSON.stringify(schema);
   document.head.appendChild(script);
 };

@@ -23,6 +23,7 @@ interface PageMetaProps {
   modifiedDate?: string;
   faqs?: FAQItem[];
   ogLocale?: string;
+  robots?: string;
 }
 
 export const usePageMeta = ({
@@ -38,6 +39,7 @@ export const usePageMeta = ({
   modifiedDate,
   faqs,
   ogLocale = "en_KE",
+  robots,
 }: PageMetaProps) => {
   useEffect(() => {
     // Set document title
@@ -64,6 +66,19 @@ export const usePageMeta = ({
         keywordsMeta.setAttribute("name", "keywords");
         keywordsMeta.setAttribute("content", keywords);
         document.head.appendChild(keywordsMeta);
+      }
+    }
+
+    // Update or create robots meta tag
+    if (robots) {
+      let robotsMeta = document.querySelector('meta[name="robots"]');
+      if (robotsMeta) {
+        robotsMeta.setAttribute("content", robots);
+      } else {
+        robotsMeta = document.createElement("meta");
+        robotsMeta.setAttribute("name", "robots");
+        robotsMeta.setAttribute("content", robots);
+        document.head.appendChild(robotsMeta);
       }
     }
 
@@ -111,7 +126,7 @@ export const usePageMeta = ({
 
     // Update canonical URL (always set, never remove in SPA)
     let canonicalLink = document.querySelector('link[rel="canonical"]');
-    const canonicalHref = canonical || `https://morisenterprises.com${window.location.pathname}`;
+    const canonicalHref = canonical || `https://morisentreprises.com${window.location.pathname}`;
     if (canonicalLink) {
       canonicalLink.setAttribute("href", canonicalHref);
     } else {
@@ -130,7 +145,7 @@ export const usePageMeta = ({
           "@type": "ListItem",
           position: index + 1,
           name: item.name,
-          item: `https://morisenterprises.com${item.url}`,
+          item: `https://morisentreprises.com${item.url}`,
         })),
       };
 
