@@ -219,7 +219,7 @@ function generateSitemap() {
   // Add all routes to sitemap
   for (const route of routesToPrerender) {
     sitemap.push(`  <url>`);
-    sitemap.push(`    <loc>https://morisenterprises.com${route.path}</loc>`);
+    sitemap.push(`    <loc>https://morisentreprises.com${route.path}</loc>`);
     sitemap.push(`    <lastmod>${currentDate}</lastmod>`);
 
     // Set change frequency and priority based on route type
@@ -254,6 +254,7 @@ async function prerender() {
   }
 
   const baseHtml = fs.readFileSync(indexHtmlPath, "utf-8");
+  let failedRoutes = [];
 
   for (const route of routesToPrerender) {
     try {
@@ -264,8 +265,13 @@ async function prerender() {
         title: route.title,
         description: route.description,
         keywords: route.keywords,
-        canonical: `https://morisenterprises.com${route.path}`,
+        canonical: `https://morisentreprises.com${route.path}`,
       });
+
+      // Validate HTML has proper opening and closing tags
+      if (!html.includes('</html>') || !html.includes('<html')) {
+        throw new Error('Invalid HTML structure: missing html tags');
+      }
 
       // Create directory structure if needed
       const routeDir = path.join(distDir, route.path);
@@ -283,7 +289,12 @@ async function prerender() {
       console.log(`✅ Prerendered: ${route.path}`);
     } catch (error) {
       console.error(`❌ Error prerendering ${route.path}:`, error.message);
+      failedRoutes.push(route.path);
     }
+  }
+
+  if (failedRoutes.length > 0) {
+    console.error(`\n⚠️  Failed to prerender ${failedRoutes.length} route(s):`, failedRoutes);
   }
 
   // Generate sitemap.xml
