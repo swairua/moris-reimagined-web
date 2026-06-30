@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
+import { Phone, ChevronLeft, ChevronRight, Beaker } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAnalytics } from "@/hooks/use-analytics";
 
 const sliderImages = [
@@ -21,6 +22,7 @@ const sliderImages = [
 export const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { trackEvent } = useAnalytics();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -114,15 +116,27 @@ export const Hero = () => {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-display font-bold text-primary-foreground mb-6 leading-tight">
-            Quality Laboratory Solutions for Your Business
+            Palintest Water Testing — <span className="text-primary-foreground/90">Official Distributor Kenya</span>
           </h1>
 
           <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed" role="doc-subtitle">
-            Leading supplier of laboratory chemicals, medical instruments, and biotechnology equipment in Kenya.
-            Quality products and services that put you first.
+            Authorized Palintest UK distributor — 300+ water testing products including Lumiso photometers,
+            Kemio analyzers, DPD tablet tests, COD tube tests, and Wagtech microbiological kits.
+            Genuine products. Expert support. Fast delivery across Kenya.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
+            <Button
+              size="lg"
+              onClick={() => {
+                trackEvent('hero_cta_clicked', { button: 'palintest_products' });
+                navigate("/palintest");
+              }}
+              className="bg-amber-400 text-foreground hover:bg-amber-500 text-lg px-8 py-6 font-bold shadow-lg"
+            >
+              <Beaker className="mr-2 h-5 w-5" />
+              Explore Palintest Range
+            </Button>
             <Button
               size="lg"
               onClick={() => {
@@ -131,7 +145,7 @@ export const Hero = () => {
               }}
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-lg px-8 py-6"
             >
-              Explore Our Services
+              All Products & Services
             </Button>
             <Button
               size="lg"

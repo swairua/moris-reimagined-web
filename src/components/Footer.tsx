@@ -102,7 +102,7 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                 <div className="text-background/80">
-                  <p>info@morisentreprise.com</p>
+                  <p>info@morisentreprises.com</p>
                 </div>
               </li>
             </ul>

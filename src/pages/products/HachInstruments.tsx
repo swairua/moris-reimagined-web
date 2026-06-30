@@ -138,6 +138,25 @@ const HachInstruments = () => {
           <li>✓ Technical training and after-sales support provided</li>
         </ul>
 
+        <div className="mt-8 mb-8 p-6 bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl border border-primary/20">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+            <div className="flex-1">
+              <h3 className="text-xl font-display font-bold text-foreground mb-2">
+                Also Available — Palintest Water Testing
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                We are also the official authorized distributor of Palintest UK in Kenya. Palintest offers a complementary range of water testing solutions including Lumiso photometers, Kemio analyzers, 40+ DPD tablet tests, COD tube tests, and portable field kits.
+              </p>
+            </div>
+            <Button
+              onClick={() => window.location.href = "/palintest"}
+              className="bg-primary hover:bg-primary-dark text-primary-foreground whitespace-nowrap"
+            >
+              View Palintest Range →
+            </Button>
+          </div>
+        </div>
+
         <h3 className="text-2xl font-display font-bold text-foreground mt-6 mb-3">
           Applications:
         </h3>

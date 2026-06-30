@@ -170,6 +170,25 @@ const WasteWaterFiltration = () => {
             <span>Advanced laboratory testing equipment</span>
           </li>
         </ul>
+
+        <div className="mt-8 p-6 bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl border border-primary/20">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+            <div className="flex-1">
+              <h3 className="text-xl font-display font-bold text-foreground mb-2">
+                Official Palintest Distributor Kenya
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                For precision water testing, explore our complete Palintest range — Lumiso photometers, Kemio analyzers, DPD tablet tests for chlorine, pH, alkalinity, hardness, and 40+ parameters. Authorized UK partner with full warranty and technical support.
+              </p>
+            </div>
+            <Button
+              onClick={() => window.location.href = "/palintest"}
+              className="bg-primary hover:bg-primary-dark text-primary-foreground whitespace-nowrap"
+            >
+              View Palintest Products →
+            </Button>
+          </div>
+        </div>
       </div>
     </ProductPageLayout>
   );

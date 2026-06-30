@@ -245,12 +245,12 @@ function updateMetaTags(html, metadata) {
   html = html.replace(/(<meta name="keywords" content=")([^"]*)/, `$1${metadata.keywords}`);
   html = html.replace(/(<meta property="og:title" content=")([^"]*)/, `$1${metadata.title}`);
   html = html.replace(/(<meta property="og:description" content=")([^"]*)/, `$1${metadata.description}`);
-  html = html.replace(/(<meta property="og:image" content=")([^"]*)/, `$1${metadata.image || "https://cdn.builder.io/api/v1/image/assets%2F8a4218e21c624724bb59cc87fa693142%2F6a6fca17bcb14e0fb6ef99718c70be62?format=webp&width=1200"}`);
+  html = html.replace(/(<meta property="og:image" content=")([^"]*)/, `$1${metadata.image || "https://morisentreprises.com/src/assets/logo.png"}`);
   html = html.replace(/(<link rel="canonical" href=")([^"]*)/, `$1${metadata.canonical}`);
   html = html.replace(/(<meta property="og:url" content=")([^"]*)/, `$1${metadata.canonical}`);
   html = html.replace(/(<meta name="twitter:title" content=")([^"]*)/, `$1${metadata.title}`);
   html = html.replace(/(<meta name="twitter:description" content=")([^"]*)/, `$1${metadata.description}`);
-  html = html.replace(/(<meta name="twitter:image" content=")([^"]*)/, `$1${metadata.image || "https://cdn.builder.io/api/v1/image/assets%2F8a4218e21c624724bb59cc87fa693142%2F6a6fca17bcb14e0fb6ef99718c70be62?format=webp&width=1200"}`);
+  html = html.replace(/(<meta name="twitter:image" content=")([^"]*)/, `$1${metadata.image || "https://morisentreprises.com/src/assets/logo.png"}`);
   return html;
 }
 
