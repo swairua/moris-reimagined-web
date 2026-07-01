@@ -5,7 +5,6 @@ import { MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { openProductQuotation } from "@/lib/whatsapp";
-import { injectAggregateOfferSchema } from "@/lib/seo";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Table, TableBody, TableHead, TableHeader, TableRow, TableCell } from "@/components/ui/table";
 import { productsByCategory } from "@/data/palintestProducts";
@@ -73,22 +72,12 @@ const PalintestKits = () => {
     }));
   };
 
-  useEffect(() => {
-    injectAggregateOfferSchema(
-      "Palintest Water Testing Solutions",
-      "Official Palintest distributor offering comprehensive water testing kits, photometers, and analyzers for professional water quality analysis.",
-      "KES",
-      "5000",
-      "500000",
-      50
-    );
-  }, []);
 
   usePageMeta({
     title: "Palintest Water Testing | Official Kenya Distributor | Premium Water Analysis",
     description: "Official Palintest distributor in Kenya. Premium water testing kits, photometers, and analyzers for drinking water, pools, spas, and environmental testing. Expert technical support and training.",
     keywords: "Palintest, Palintest Kenya, water testing kits, photometers, Pooltest, Kemio analyzer, water quality analysis, water testing equipment, Kenya distributor",
-    image: "https://morisentreprises.com/assets/og-image.png",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F8a4218e21c624724bb59cc87fa693142%2Ffad345ebf2ca45dc907dc570e1a1cf8c?format=webp&width=800",
     type: "product",
     canonical: "https://morisentreprises.com/palintest",
     breadcrumbs: [
@@ -96,6 +85,7 @@ const PalintestKits = () => {
       { name: "Products", url: "/#services" },
       { name: "Palintest", url: "/palintest" },
     ],
+    author: "Moris Entreprises",
     faqs: [
       {
         question: "Is Moris Entreprises an authorized Palintest distributor?",
