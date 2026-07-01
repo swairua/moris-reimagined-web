@@ -20,6 +20,9 @@
   RewriteRule ^hach-instruments$ /hach [R=301,L,QSA]
   RewriteRule ^laboratory-material-testing$ /materialtesting [R=301,L,QSA]
 
+  # Serve XML files directly (sitemap, XSL, etc.)
+  RewriteRule ^.*\.xml$ - [L]
+
   # Allow direct access to existing files and directories
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d

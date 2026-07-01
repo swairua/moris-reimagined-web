@@ -202,7 +202,6 @@ function buildRoutes(apiProducts) {
 function generateSitemap(routes) {
   const currentDate = new Date().toISOString().split("T")[0];
   const lines = [`<?xml version="1.0" encoding="UTF-8"?>`];
-  lines.push(`<?xml-stylesheet type="text/xsl" href="https://morisentreprises.com/sitemap.xsl"?>`);
   lines.push(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`);
 
   for (const route of routes) {
