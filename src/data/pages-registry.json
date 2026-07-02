@@ -236,5 +236,19 @@
     "priority": "medium",
     "status": "pending",
     "relatedPages": ["equipment-calibration", "laboratory-installation", "labequipment"]
+  },
+  {
+    "id": "palintest",
+    "route": "/palintest",
+    "type": "brand",
+    "title": "Palintest Water Testing Equipment & Photometers | Official Distributor Kenya",
+    "metaDescription": "Official distributor of Palintest water testing equipment in Kenya. 300+ SKUs including Lumiso photometers, Kemio analyzers, 40+ tablet tests, COD tube tests, Wagtech microbiological kits, Delagua kits & more. Authorized Palintest UK partner with full technical support. Buy Palintest in Kenya with fast delivery.",
+    "keywords": ["Palintest", "Palintest Kenya", "Palintest distributor", "Palintest water testing", "Palintest photometer", "buy Palintest Kenya", "Palintest price Kenya", "Palintest distributor Nairobi", "Lumiso", "Kemio", "Wagtech", "Palintest tablet tests", "Palintest tube tests", "COD testing", "Delagua", "water testing equipment", "water quality analysis", "official Palintest distributor", "Nairobi", "Palintest reagents", "DPD tablets", "water analysis Kenya"],
+    "h1": "Palintest – Official Water Testing Equipment Distributor",
+    "templateType": "Brand",
+    "wave": 0,
+    "priority": "high",
+    "status": "created",
+    "relatedPages": ["water", "ph-meters", "conductivity-meters", "colorimeters"]
   }
 ]
